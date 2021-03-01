@@ -189,25 +189,107 @@ class LinkListIntersectionNode:
             return cur1
 
 
+class Node(object):
+
+    def __init__(self, prev=None, next=None, key=None, value=None):
+        self.prev, self.next, self.key, self.value = prev, next, key, value
+
+
+class CircularDoubleLinkedList(object):
+
+    def __init__(self):
+        node = Node()
+        node.prev, node.next = node, node
+        self.rootnode = node
+
+    def headnode(self):
+        return self.rootnode.next
+
+    def tailnode(self):
+        return self.rootnode.prev
+
+    def remove(self, node):
+        if node is self.rootnode:
+            return
+        else:
+            node.prev.next = node.next
+            node.next.prev = node.prev
+
+    def append(self, node):
+        tailnode = self.tailnode()
+        tailnode.next = node
+        node.next = self.rootnode
+        self.rootnode.prev = node
+
+
+class LRUCache(object):
+
+    def __init__(self, maxsize=16):
+        self.maxsize = maxsize
+        self.cache = {}
+        self.access = CircularDoubleLinkedList()
+        self.isfull = len(self.cache) >= self.maxsize
+
+    def __call__(self, func):
+        def wrapper(n):
+            cachenode = self.cache.get(n)
+            if cachenode is not None:  # hit
+                self.access.remove(cachenode)
+                self.access.append(cachenode)
+                return cachenode.value
+            else:  # miss
+                value = func(n)
+                if not self.isfull:
+                    tailnode = self.access.tailnode()
+                    newnode = Node(tailnode, self.access.rootnode, n, value)
+                    self.access.append(newnode)
+                    self.cache[n] = newnode
+                    self.isfull = len(self.cache) >= self.maxsize
+                    return value
+                else:  # full
+                    lru_node = self.access.headnode()
+                    del self.cache[lru_node.key]
+                    self.access.remove(lru_node)
+                    tailnode = self.access.tailnode()
+                    newnode = Node(tailnode, self.access.rootnode, n, value)
+                    self.access.append(newnode)
+                    self.cache[n] = newnode
+                return value
+
+        return wrapper
+
+
+@LRUCache()
+def fib(n):
+    if n <= 2:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+
 if __name__ == "__main__":
-    dn = DeleteNode([5, 3, 1, 9], 3)
-    dn.traversal()
-    dn.delete_node_in_a_linked_list(dn._node)
-    dn.traversal()
+    # dn = DeleteNode([5, 3, 1, 9], 3)
+    # dn.traversal()
+    # dn.delete_node_in_a_linked_list(dn._node)
+    # dn.traversal()
+    #
+    # mn = MergeLinkedList([1, 3, 5], [1, 2, 4, 7])
+    # mn.merge_linked_list()
+    # mn.traversal()
+    #
+    # r_link = ReverseLinkList()
+    # r_link.add(3)
+    # r_link.add(5)
+    # r_link.add(6)
+    # r_link.add(7)
+    # r_link.add(8)
+    # print("对链表进行遍历")
+    # r_link.traversal()
+    # print(f"size：{r_link.size()}")
+    # print("对链表进行逆向操作之后")
+    # r_link.reverse_link()
+    # r_link.traversal()
 
-    mn = MergeLinkedList([1, 3, 5], [1, 2, 4, 7])
-    mn.merge_linked_list()
-    mn.traversal()
+    for i in range(1, 10):
+        print(fib(i))
 
-    r_link = ReverseLinkList()
-    r_link.add(3)
-    r_link.add(5)
-    r_link.add(6)
-    r_link.add(7)
-    r_link.add(8)
-    print("对链表进行遍历")
-    r_link.traversal()
-    print(f"size：{r_link.size()}")
-    print("对链表进行逆向操作之后")
-    r_link.reverse_link()
-    r_link.traversal()
