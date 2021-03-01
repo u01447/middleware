@@ -1,0 +1,30 @@
+# Idea
+.idea/
+
+# maven
+*.iml
+*/*.iml
+
+# Java
+.class
+# 编译生成文件
+target/
+*/target/classes/
+*/target/generated-sources/
+*/target/generated-test-sources/
+
+# VS
+.vscode
+
+# Personal Config File
+
+
+# vim swap file
+*.swp
+
+*.pid
+
+# Mac
+.DS_Store
+
+
