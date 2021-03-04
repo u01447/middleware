@@ -7,7 +7,7 @@
 
 package main
 
-import "offer/note/functions"
+import "offer/note/goroutines"
 
 func main() {
 
@@ -63,6 +63,14 @@ func main() {
 	//}
 	//animal.DuckBehavior(&mock.Duck{})
 
-	// 08 高阶函数/闭包
-	functions.TestAdder()
+	//// 08 高阶函数/闭包
+	//functions.TestAdder()
+
+	//// 09 错误处理与单元测试在简单web服务中的应用
+	//web.Server()
+
+	// 10 goroutine
+	//goroutines.Run()
+
+	goroutines.AtomicDemo()
 }

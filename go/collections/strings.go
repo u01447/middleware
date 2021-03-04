@@ -29,7 +29,7 @@ func MaxNoRepeated(s string) int {
 	return maxLength
 }
 
-func MaxNoRepeatedChn(s string) int {
+func MaxNoRepeatedZhn(s string) int {
 	chNotRepeatIndex := make(map[rune]int)
 	start := 0
 	maxLength := 0
