@@ -5,7 +5,7 @@
  * Description:
  **/
 
-package linear
+package list
 
 func IsHappy(n int) bool {
 	p, q := getNext(n), getNext(getNext(n))

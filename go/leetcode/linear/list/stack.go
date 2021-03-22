@@ -5,4 +5,4 @@
  * Description: 栈结构实现
  **/
 
-package linear
+package list

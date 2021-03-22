@@ -5,7 +5,7 @@
  * Description:
  **/
 
-package leetcode
+package list
 
 import (
 	"fmt"

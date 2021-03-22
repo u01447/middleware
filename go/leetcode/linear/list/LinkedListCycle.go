@@ -1,45 +1,46 @@
-package leetcode
+package list
 
 /**
  * Author: Wang P
  * Version: 1.0.0
- * Date: 2021-03-06 11:14:26
+ * Date: 2021-03-06 11:03:59
  * Description:
  **/
-//Given a linked list, return the node where the cycle begins. If there is no cy
-//cle, return null.
+//Given head, the head of a linked list, determine if the linked list has a cycl
+//e in it.
 //
 // There is a cycle in a linked list if there is some node in the list that can
 //be reached again by continuously following the next pointer. Internally, pos is
 //used to denote the index of the node that tail's next pointer is connected to. N
 //ote that pos is not passed as a parameter.
 //
-// Notice that you should not modify the linked list.
+// Return true if there is a cycle in the linked list. Otherwise, return false.
+//
 //
 //
 // Example 1:
 //
 //
 //Input: head = [3,2,0,-4], pos = 1
-//Output: tail connects to node index 1
-//Explanation: There is a cycle in the linked list, where tail connects to the s
-//econd node.
+//Output: true
+//Explanation: There is a cycle in the linked list, where the tail connects to t
+//he 1st node (0-indexed).
 //
 //
 // Example 2:
 //
 //
 //Input: head = [1,2], pos = 0
-//Output: tail connects to node index 0
-//Explanation: There is a cycle in the linked list, where tail connects to the f
-//irst node.
+//Output: true
+//Explanation: There is a cycle in the linked list, where the tail connects to t
+//he 0th node.
 //
 //
 // Example 3:
 //
 //
 //Input: head = [1], pos = -1
-//Output: no cycle
+//Output: false
 //Explanation: There is no cycle in the linked list.
 //
 //
@@ -55,35 +56,26 @@ package leetcode
 //
 // Follow up: Can you solve it using O(1) (i.e. constant) memory?
 // Related Topics 链表 双指针
-// 👍 898 👎 0
+// 👍 971 👎 0
 
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-func detectCycle(head *ListNode) *ListNode {
+// Definition for singly-linked list.
+type ListNode struct {
+	Val  int
+	Next *ListNode
+}
+
+func hasCycle(head *ListNode) bool {
 	if head == nil || head.Next == nil {
-		return nil
+		return false
 	}
 	p := head.Next
 	q := head.Next.Next
 	for q != nil && q.Next != nil && p != q {
+		p = p.Next
 		q = q.Next.Next
-		p = p.Next
 	}
-	if p != q {
-		return nil
-	}
-	q = head
-	for p != q {
-		p = p.Next
-		q = q.Next
-	}
-	return q
+	return p == q
 }
 
 //leetcode submit region end(Prohibit modification and deletion)
