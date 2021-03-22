@@ -5,7 +5,7 @@
  * Description:
  **/
 
-package linear
+package leetcode
 
 import (
 	"fmt"
@@ -16,7 +16,7 @@ func TestIsHappy(t *testing.T) {
 	sum := 0
 	for i := 0; i <= 100000; i++ {
 		if IsHappy(i) {
-			sum++
+			sum += i
 		}
 	}
 	fmt.Println(sum)
