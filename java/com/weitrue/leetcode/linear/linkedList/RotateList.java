@@ -5,7 +5,7 @@
  * Description: 61-Rotate List
  **/
  
-package com.weitrue.leetcode.editor.cn;
+package com.weitrue.leetcode.linear.linkedList;
 
 public class RotateList{
     public static void main(String[] args){

@@ -5,7 +5,7 @@
  * Description: 86-Partition List
  **/
  
-package com.weitrue.leetcode.editor.cn;
+package com.weitrue.leetcode.linear.linkedList;
 
 public class PartitionList{
     public static void main(String[] args){

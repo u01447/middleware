@@ -1,36 +1,45 @@
 /*
  * Author: Wang P
  * Version: 1.0.0
- * Date: 2021-03-06 13:50:14
- * Description: 82-Remove Duplicates from Sorted List II
+ * Date: 2021-03-06 13:48:45
+ * Description: 83-Remove Duplicates from Sorted List
  **/
  
-package com.weitrue.leetcode.editor.cn;
+package com.weitrue.leetcode.linear.linkedList;
 
-public class RemoveDuplicatesFromSortedListIi{
+public class RemoveDuplicatesFromSortedList{
     public static void main(String[] args){
-        Solution s = new RemoveDuplicatesFromSortedListIi().new Solution();
+        Solution s = new RemoveDuplicatesFromSortedList().new Solution();
     }
     
-    //Given the head of a sorted linked list, delete all nodes that have duplicate n
-    //umbers, leaving only distinct numbers from the original list. Return the linked
-    //list sorted as well.
+    //Given the head of a sorted linked list, delete all duplicates such that each e
+    //lement appears only once. Return the linked list sorted as well.
+    //
     //
     // Example 1:
-    //Input: head = [1,2,3,3,4,4,5]
-    //Output: [1,2,5]
+    //
+    //
+    //Input: head = [1,1,2]
+    //Output: [1,2]
+    //
     //
     // Example 2:
-    //Input: head = [1,1,1,2,3]
-    //Output: [2,3]
+    //
+    //
+    //Input: head = [1,1,2,3,3]
+    //Output: [1,2,3]
+    //
+    //
     //
     // Constraints:
+    //
+    //
     // The number of nodes in the list is in the range [0, 300].
     // -100 <= Node.val <= 100
     // The list is guaranteed to be sorted in ascending order.
     //
     // Related Topics 链表
-    // 👍 469 👎 0
+    // 👍 488 👎 0
  
     //leetcode submit region begin(Prohibit modification and deletion)
     /**
@@ -46,21 +55,22 @@ public class RemoveDuplicatesFromSortedListIi{
 
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {
-            ListNode hair = new ListNode(0, head), fast = head, slow = hair;
-            while (fast != null) {
-                while (fast.next != null && fast.val == fast.next.val) {
-                    fast = fast.next;
-                }
-                if (slow.next == fast) {
-                    slow = slow.next;
-                }else {
-                    slow.next = fast.next;
-                }
-                fast = fast.next;
+            if(head == null) {
+                return null;
             }
-            return hair.next;
+            ListNode fast = head.next, slow = head;
+            while (fast != null) {
+                if (fast.val == slow.val) {
+                    slow.next = fast.next;
+                    fast = slow.next;
+                }else {
+                    fast = fast.next;
+                    slow = slow.next;
+                }
+            }
+            return head;
         }
-    }
+}
 //leetcode submit region end(Prohibit modification and deletion)
 
 }

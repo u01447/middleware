@@ -5,7 +5,7 @@
  * Description: 92-Reverse Linked List II
  **/
  
-package com.weitrue.leetcode.editor.cn;
+package com.weitrue.leetcode.linear.linkedList;
 
 public class ReverseLinkedListIi{
     public static void main(String[] args){

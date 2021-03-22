@@ -1,40 +1,49 @@
 /*
  * Author: Wang P
  * Version: 1.0.0
- * Date: 2021-03-06 20:22:33
- * Description: 24-Swap Nodes in Pairs
+ * Date: 2021-03-06 17:42:34
+ * Description: 25-Reverse Nodes in k-Group
  **/
  
-package com.weitrue.leetcode.editor.cn;
+package com.weitrue.leetcode.linear.linkedList;
 
-public class SwapNodesInPairs{
+public class ReverseNodesInKGroup{
     public static void main(String[] args){
-        Solution s = new SwapNodesInPairs().new Solution();
-
+        Solution s = new ReverseNodesInKGroup().new Solution();
     }
-    
-    //Given a linked list, swap every two adjacent nodes and return its head. 
-    //
-    // Example 1:
-    //Input: head = [1,2,3,4]
-    //Output: [2,1,4,3]
-    //
-    // Example 2:
-    //Input: head = []
-    //Output: []
-    //
-    // Example 3:
-    //Input: head = [1]
-    //Output: [1]
-    //
-    // Constraints:
-    // The number of nodes in the list is in the range [0, 100].
-    // 0 <= Node.val <= 100
-    //Follow up: Can you solve the problem without modifying the values in the list'
-    //s nodes? (i.e., Only nodes themselves may be changed.) Related Topics 递归 链表
-    // 👍 859 👎 0
 
-        //leetcode submit region begin(Prohibit modification and deletion)
+    //Given a linked list, reverse the nodes of a linked list k at a time and return its modified list.
+    //k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes, in the end, should remain as it is.
+    // Follow up:
+    // Could you solve the problem in O(1) extra memory space?
+    // You may not alter the values in the list's nodes, only nodes itself may be changed.
+
+    // Example 1:
+    //Input: head = [1,2,3,4,5], k = 2
+    //Output: [2,1,4,3,5]
+
+    // Example 2:
+    //Input: head = [1,2,3,4,5], k = 3
+    //Output: [3,2,1,4,5]
+
+    // Example 3:
+    //Input: head = [1,2,3,4,5], k = 1
+    //Output: [1,2,3,4,5]
+
+    // Example 4:
+    //Input: head = [1], k = 1
+    //Output: [1]
+
+    // Constraints:
+    // The number of nodes in the list is in the range sz.
+    // 1 <= sz <= 5000
+    // 0 <= Node.val <= 1000
+    // 1 <= k <= sz
+    //
+    // Related Topics 链表
+    // 👍 977 👎 0
+ 
+    //leetcode submit region begin(Prohibit modification and deletion)
     /**
      * Definition for singly-linked list.
      */
@@ -44,13 +53,14 @@ public class SwapNodesInPairs{
         ListNode() {}
         ListNode(int val) { this.val = val; }
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     }
+    }
 
     class Solution {
-        public ListNode swapPairs(ListNode head) {
+        public ListNode reverseKGroup(ListNode head, int k) {
             ListNode hair = new ListNode(0, head), pre = hair, tail = pre;
             while (head != null) {
-                for (int i=0; i<2; i++) {
+                //tail = pre;
+                for (int i=0; i<k; i++) {
                     tail = tail.next;
                     if (tail == null) {
                         return hair.next;
@@ -81,6 +91,6 @@ public class SwapNodesInPairs{
             return new ListNode[]{tail, head};
         }
     }
-    //leetcode submit region end(Prohibit modification and deletion)
+//leetcode submit region end(Prohibit modification and deletion)
 
 }

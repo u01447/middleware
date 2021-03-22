@@ -5,7 +5,7 @@
  * Description:
  **/
  
-package com.weitrue.leetcode.editor.cn;
+package com.weitrue.leetcode.linear.linkedList;
 
 public class LinkedListCycle{
     public static void main(String[] args){

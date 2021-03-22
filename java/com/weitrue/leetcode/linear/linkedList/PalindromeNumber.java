@@ -4,7 +4,7 @@
  * Date: 2021-03-05 17:56:08
  * Description:
  **/
-package com.weitrue.leetcode.editor.cn;
+package com.weitrue.leetcode.linear.linkedList;
 
 public class PalindromeNumber{
     public static void main(String[] args){
